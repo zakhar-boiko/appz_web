@@ -18,14 +18,15 @@ import { formatDate } from "../../utilities/utilities";
 interface MedicalRecordPageProps {}
 
 const MedicalRecordPage: FunctionComponent<MedicalRecordPageProps> = () => {
-  const { profile } = useUser();
+const { profile } = useUser();
 
   const { id } = useParams();
 
   const { data: medicalRecord } = useTreatmentHistoryDetailsQuery(
-    id ?? "",
-    profile?.id ?? "1"
+    id ?? "1",
+    profile?.id ? profile.id : "1"
   );
+  
 
   return (
     <Stack alignItems="center" gap={{ base: "2rem", sm: "3.75rem" }}>

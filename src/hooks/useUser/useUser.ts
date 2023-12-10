@@ -1,13 +1,14 @@
 import { create } from "zustand";
 
- type ProfileType = {
+type ProfileType = {
   id: string;
   name: string;
   diseases: {
     title: string;
-    doctorName: string;
+    doctorData: string;
+    doctorSpecialization: string;
   }[];
-  doctor: {
+  doctorDto: {
     name: string;
     specialization: string;
   };

@@ -15,7 +15,7 @@ interface HomePageProps {}
 
 const HomePage: FunctionComponent<HomePageProps> = () => {
   const user = useUser();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
 
   const signIn = () => {
     navigate(user.token.length > 0 ? "profile" : "/login");

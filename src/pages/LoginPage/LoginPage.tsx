@@ -34,12 +34,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = () => {
         onSuccess: (response) => {
           if (response.token) {
             setToken(response.token);
-            setProfile({
-              name: response.name ?? "",
-              doctor: response.doctor ?? {},
-              diseases: response.diseases ?? [],
-              id: response.id ?? "",
-            });
+            setProfile(response.profile);
             navigate("/profile");
           } else {
             toast({

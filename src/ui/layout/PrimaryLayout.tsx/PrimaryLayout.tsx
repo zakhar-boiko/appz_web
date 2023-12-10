@@ -2,10 +2,14 @@ import { Container, VStack } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import Header from "../Header/Header";
 import { Outlet } from "react-router";
+import useUser from "../../../hooks/useUser/useUser";
 
 interface PrimaryLayoutProps {}
 
 const PrimaryLayout: FunctionComponent<PrimaryLayoutProps> = () => {
+  const user = useUser();
+  
+
   return (
     <>
       <VStack alignItems='stretch' overflowX="clip" minWidth="100%" minHeight="100vh" gap='0'>

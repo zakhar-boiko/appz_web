@@ -17,6 +17,6 @@ export const useTreatmentHistoryDetailsQuery = (id: string, userId: string) => {
       `medicalrecord/details/${id}?userId=${userId}`
     );
   }, {
-    enabled: id.length > 0 && userId.length > 0
+    // enabled: id.length > 0 && userId.length > 0
   });
 };
