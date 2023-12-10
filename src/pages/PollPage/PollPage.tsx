@@ -5,7 +5,7 @@ import {
   useSendPollMutation,
 } from "../../features/poll/api/client";
 import useUser from "../../hooks/useUser/useUser";
-import { Button, Radio, RadioGroup, Stack, Text, useToast } from "@chakra-ui/react";
+import { Button, Center, Radio, RadioGroup, Spinner, Stack, Text, useToast } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router";
 import { PollDetailsType } from "../../features/poll/api/types";
 
@@ -24,7 +24,7 @@ const PollPage: FunctionComponent<PollPageProps> = () => {
   const { profile } = useUser();
   const toast = useToast();
 
-  const { data: poll } = useFetchPollQuery(
+  const { data: poll, isLoading: isPollLoading } = useFetchPollQuery(
     id ?? "",
     profile?.id ? profile.id : "1"
   );
@@ -100,7 +100,7 @@ const PollPage: FunctionComponent<PollPageProps> = () => {
           isClosable: true,
         });
 
-        setTimeout(() =>  navigate('/profile'), 3000)
+        setTimeout(() =>  navigate('/profile'), 1000)
        ;
       },
       onError: () => {
@@ -114,6 +114,13 @@ const PollPage: FunctionComponent<PollPageProps> = () => {
         });
       }
     })
+  }
+
+
+  if(isPollLoading) {
+    return <Center width='100%' flexGrow={1} pt='3.75rem'>
+      <Spinner size='xl'/>
+    </Center>
   }
 
   return (

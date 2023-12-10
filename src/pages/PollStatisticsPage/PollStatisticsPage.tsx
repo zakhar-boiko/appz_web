@@ -32,8 +32,6 @@ const PollStatistics: FunctionComponent<PollStatisticsProps> = () => {
       profile?.id ? profile?.id : "1",
     );
 
-
-    console.log(statistics)
   
   
 

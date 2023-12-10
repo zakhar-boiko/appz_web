@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useTreatmentHistoryDetailsQuery } from "../../features/treatment-history/api/client";
 import useUser from "../../hooks/useUser/useUser";
 import {
+  Center,
+  Spinner,
   Stack,
   Table,
   TableCaption,
@@ -22,10 +24,16 @@ const { profile } = useUser();
 
   const { id } = useParams();
 
-  const { data: medicalRecord } = useTreatmentHistoryDetailsQuery(
+  const { data: medicalRecord, isLoading } = useTreatmentHistoryDetailsQuery(
     id ?? "1",
     profile?.id ? profile.id : "1"
   );
+
+  if(isLoading) {
+    return <Center width='100%' flexGrow={1} pt='3.75rem'>
+      <Spinner size='xl'/>
+    </Center>
+  }
   
 
   return (
