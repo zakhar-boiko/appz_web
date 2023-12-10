@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { InputStyle as Input } from "./components/InputStyles/InputStyles";
 
 // example theme
 export const mainTheme = extendTheme({
@@ -17,6 +18,8 @@ export const mainTheme = extendTheme({
     xl: "2.25rem",
   },
   components: {
+    Input,
+
     Button: {
       sizes: {
         sm: {
@@ -29,9 +32,14 @@ export const mainTheme = extendTheme({
           fontSize: "md",
           color: "white",
           fontWeight: "500",
-          paddingVertical: "1.125rem",
-          paddingHorizontal: "4rem",
-          minWidth: "344",
+          py: "1.125rem",
+          px: "4rem",
+          minHeight: "fit-content",
+          height: "fit-content",
+          minWidth: "250",
+          _hover: {
+            opacity: 0.5,
+          },
         },
       },
     },

@@ -8,15 +8,15 @@ interface PrimaryLayoutProps {}
 const PrimaryLayout: FunctionComponent<PrimaryLayoutProps> = () => {
   return (
     <>
-      <VStack alignItems='stretch' overflowX="clip" minWidth="100%" minHeight="100vh">
+      <VStack alignItems='stretch' overflowX="clip" minWidth="100%" minHeight="100vh" gap='0'>
         <Header />
         <Container
           overflowY="hidden"
           flexGrow={1}
           maxWidth={1920}
           bg="white"
-          py={{ base: "3.75rem", md: "3rem", "2xl": "6.25rem" }}
-          px={{ base: "3rem", sm: "5rem" }}
+          py={{ base: "2rem", md: "3rem", "2xl": "3.75rem" }}
+          px={{ base: "1rem", sm: "3rem" }}
         >
           <Outlet />
         </Container>

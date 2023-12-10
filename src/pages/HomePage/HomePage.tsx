@@ -1,47 +1,53 @@
-import { Button, Flex, Image, Stack, Text, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Stack,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import cover from "../../assets/images/home.png";
-import { useSignIn } from "../../features/home/api";
+import { useNavigate } from "react-router";
+import useUser from "../../hooks/useUser/useUser";
 interface HomePageProps {}
 
 const HomePage: FunctionComponent<HomePageProps> = () => {
-  const { mutate } = useSignIn();
-  const toast = useToast();
+  const user = useUser();
+  const navigate = useNavigate();
 
   const signIn = () => {
-    mutate(
-      {},
-      {
-        onSuccess: () => {
-          toast({
-            status: "success",
-            title: "Success",
-            duration: 3000,
-            isClosable: true,
-          });
-        },
-
-        onError: () => {
-          toast({
-            status: "error",
-            title: "Error",
-            duration: 3000,
-            isClosable: true,
-          });
-        },
-      }
-    );
+    navigate(user.token.length > 0 ? "profile" : "/login");
   };
 
   return (
-    <Flex alignItems='center' gap="3rem" maxWidth="100% !important">
-      <Image maxH='calc(100vh - 100px)' width='1rem' flexGrow={1} ml="-5rem" flexShrink={1} src={cover} alt="cover" />
-      <Stack gap='2rem' maxWidth='400'>
-        <Text color="main" lineHeight='3rem' fontWeight="800" fontSize="xl">
+    <Flex
+      flexDirection={{ base: "column", lg: "row" }}
+      alignItems="center"
+      gap='3rem'
+      justifyContent="space-between"
+      maxWidth="100% !important"
+    >
+      <Box flexShrink={1} flexGrow={0}>
+        <Image
+          maxH={{
+            md: "calc(100vh - 10.625rem)",
+            "2xl": "calc(100vh - 12.2rem)",
+          }}
+          width="100%"
+          src={cover}
+          // width="100%"
+          alt="cover"
+        />
+      </Box>
+
+      <Stack flexShrink={0} gap="2rem" maxWidth={{ base:'100%', lg:"400"}}>
+        <Text color="main" lineHeight="3rem" fontWeight="800" fontSize="xl">
           REHAB UA - розумна реабілітація для вас
         </Text>
         <Button onClick={signIn} variant="primary">
-          Увійти
+          {user.token.length > 0 ? "Мій кабінет" : "Увійти"}
         </Button>
       </Stack>
     </Flex>

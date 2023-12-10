@@ -3,22 +3,23 @@ import { FunctionComponent } from "react";
 import logo from "../../../assets/images/logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 import UserIcon from "../../icons/UserIcon/UserIcon";
+import useUser from "../../../hooks/useUser/useUser";
 
 interface HeaderProps {}
 
 const Header: FunctionComponent<HeaderProps> = () => {
   const location = useLocation();
-  const showCabinet = location.pathname == "/";
+  const { token } = useUser();
+  const showCabinet = location.pathname !== "/" && token.length > 0;
   return (
     <Flex
-
       as="header"
       zIndex={1001}
       position="sticky"
       justifyContent={showCabinet ? "space-between" : "flex-start"}
       alignItems="center"
       maxWidth={1920}
-      px={{ base: "2rem", sm: "5rem" }}
+      px={{ base: "1rem", sm: "3rem" }}
       py="1rem"
     >
       <NavLink to="/">
